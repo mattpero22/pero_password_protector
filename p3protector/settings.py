@@ -51,6 +51,8 @@ MIDDLEWARE = [
     'django_otp.middleware.OTPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_otp.middleware.OTPMiddleware',
+    'two_factor.middleware.threadlocals.ThreadLocals',
 ]
 
 ROOT_URLCONF = 'p3protector.urls'
