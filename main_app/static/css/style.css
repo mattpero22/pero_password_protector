@@ -1,0 +1,81 @@
+@font-face {
+    font-family: 'azonix';
+    src: url('../fonts/Azonix.otf');
+}
+
+:root {
+    --black: #02010A;
+    --blue: #24B9FF;
+    --white: #F0EFF4;
+    --orange: #D57F34;
+    --grey: #7B6C65;
+}
+
+body {
+    font-family: 'azonix';
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(-45deg,  #008080, #C1F6B6, #8E61D1, #70D2FF);
+    background-size: 300% 300%;
+    animation: gradient 15s ease infinite;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: linear-gradient(45deg,  #008080, #C1F6B6, #8E61D1, #70D2FF);
+    background-size: 300% 300%;
+    animation: gradient 15s ease infinite;
+}
+
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: linear-gradient(45deg,  #008080, #C1F6B6, #8E61D1, #70D2FF);
+    background-size: 300% 300%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 50% 100%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.nav-logo {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.nav-logo-img {
+    width: 100px;
+}
+
+.nav-logo-txt {
+    font-size: 2em;
+}
+
+nav {
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.card-img {
+    width: 300px;
+}
