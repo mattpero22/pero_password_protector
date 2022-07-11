@@ -9,4 +9,5 @@ urlpatterns = [
     path('', include('main_app.urls')),
     path('', include(tf_urls,)),
     path('', include(tf_twilio_urls,)),
+    path('accounts/', include('django.contrib.auth.urls'))
 ]
