@@ -24,22 +24,17 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'main_app',
+    'django_otp',
+    'django_otp.plugins.otp_static',
+    'django_otp.plugins.otp_totp',
+    'two_factor',
+    'two_factor.plugins.phonenumber',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Two factor auth apps
-    'django_otp',
-    'django_otp.plugins.otp_static',
-    'django_otp.plugins.otp_totp',
-    'django_otp.plugins.otp_email',  # <- if you want email capability.
-    'two_factor',
-    'two_factor.plugins.phonenumber',  # <- if you want phone number capability.
-    'two_factor.plugins.email',  # <- if you want email capability.
-    'two_factor.plugins.yubikey',  # <- for yubikey capability.
-    'otp_yubikey',
 ]
 
 MIDDLEWARE = [
@@ -51,7 +46,6 @@ MIDDLEWARE = [
     'django_otp.middleware.OTPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_otp.middleware.OTPMiddleware',
     'two_factor.middleware.threadlocals.ThreadLocals',
 ]
 
@@ -123,7 +117,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 LOGIN_URL = 'two_factor:login'
-LOGIN_REDIRECT_URL = 'two_factor:profile'
+LOGIN_REDIRECT_URL = 'home'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from two_factor.views import LoginView as TfLoginView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 
@@ -12,7 +13,7 @@ def signup(request):
     if form.is_valid():
       user = form.save()
       login(request, user)
-      return redirect('index')
+      return redirect('home')
     else:
       error_messages = 'Invalid Info - Please Try Again'
   form = UserCreationForm()
@@ -21,3 +22,6 @@ def signup(request):
     'error_messages': error_messages
   }
   return render(request, 'registration/signup.html', context)
+
+
+
