@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.forms import ModelForm
+from main_app.models import StoredAccount
 
-@login_required
+
 def home(request):
     return render(request, 'home.html')
 
