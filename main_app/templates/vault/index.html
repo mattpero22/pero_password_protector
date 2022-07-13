@@ -2,21 +2,16 @@
 
 {% block content %}
 
-<h1>Cat List</h1>
+<h1>Vault</h1>
 
 {% for account in accounts %}
 <div class="card">
-  <a href="{% url 'detail' account.id %}">
+  <a href="{% url 'detail' cat.id %}">
     <div class="card-content">
       <span class="card-title">{{ account.service }}</span>
-      <p>: {{ cat.breed }}</p>
-      <p>Description: {{ cat.description }}</p>
-      {% if cat.age > 0 %}
-      <p>Age: {{ cat.age }}</p>
-      {% else %}
-      <p>Age: Kitten</p>
-      {% endif %}
     </div>
   </a>
 </div>
-{% endfor %} {% endblock %}
+{% endfor %}
+
+{% endblock %}

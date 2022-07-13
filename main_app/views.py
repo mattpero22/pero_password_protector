@@ -31,5 +31,10 @@ def accounts_index(request):
   accounts = StoredAccount.objects.filter(user=request.user)
   return render(request, 'vault/index.html', { 'accounts': accounts })
 
+@login_required
+def accounts_detail(request, storedaccount_id):
+  account = StoredAccount.objects.get(id=storedaccount_id)
+  return render(request, 'vault/detail.html', { 'account': account })
+
 
 
