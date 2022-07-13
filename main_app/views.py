@@ -26,5 +26,10 @@ def signup(request):
   }
   return render(request, 'registration/signup.html', context)
 
+@login_required
+def accounts_index(request):
+  accounts = StoredAccount.objects.filter(user=request.user)
+  return render(request, 'vault/index.html', { 'accounts': accounts })
+
 
 

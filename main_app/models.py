@@ -9,11 +9,11 @@ import base64
 import hashlib
 
 class StoredAccount(models.Model):
-    profile_id = models.ForeignKey(User, on_delete = models.CASCADE, default=1)
+    user = models.ForeignKey(User, on_delete = models.CASCADE, default=1)
     service = models.CharField(max_length=256)
     login = models.CharField(max_length=256) # encypt the user's login
     password = models.CharField(max_length=256) # encrypt the user's pw
-
+    created = models.DateTimeField(auto_now_add=True)
 
 
 
