@@ -26,8 +26,5 @@ def signup(request):
   }
   return render(request, 'registration/signup.html', context)
 
-def vault(request):
-  return render(request, 'vault.html')
-
 
 
