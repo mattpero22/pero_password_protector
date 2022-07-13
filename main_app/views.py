@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from two_factor.views import LoginView as TfLoginView
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 
+@login_required
 def home(request):
     return render(request, 'home.html')
 
