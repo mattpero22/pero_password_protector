@@ -38,8 +38,9 @@ def accounts_index(request):
 @login_required
 def accounts_detail(request, storedaccount_id):
   account = StoredAccount.objects.get(id=storedaccount_id)
-  login_raw = encryption.decrypt(account.login)
-  password_raw = encryption.decrypt(account.password)
+  print(account.service, account.login, account.password)
+  login_raw = encryption.decrypt(account.login, 'hello')
+  password_raw = encryption.decrypt(account.password, 'hello')
   return render(request, 'vault/detail.html', { 'account': account, 'service': account.service, 'login': login_raw, 'password': password_raw })
 
 @login_required
@@ -50,10 +51,14 @@ def add_account(request):
   if form.is_valid():
     new_account = form.save(commit=False)
     new_account.user = user
-    new_account.login = encryption.encrypt(new_account.login)
-    new_account.password = encryption.encrypt(new_account.password)
+    new_account.login = encryption.encrypt(new_account.login, 'hello')
+    new_account.password = encryption.encrypt(new_account.password, 'hello')
     new_account.save()
   return redirect('/vault/', user_id=user)
+
+@login_required
+def confirm_user(request):
+  pass
 
 class AccountDelete(LoginRequiredMixin, DeleteView):
   model = StoredAccount
