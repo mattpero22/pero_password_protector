@@ -7,6 +7,7 @@ urlpatterns = [
     path('vault/', views.accounts_index, name='index'),
     path('vault/create', views.add_account, name='create'),
     path('vault/<int:storedaccount_id>', views.accounts_detail, name='detail'),
+    path('vault/<int:pk>/delete/', views.AccountDelete.as_view(), name='delete'),
 
 ]
 

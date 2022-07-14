@@ -2,12 +2,11 @@
 
 {% block content %}
 <div class="card">
-    <a href="{% url 'detail' account.id %}">
       <div class="card-content">
         <span class="card-title">{{ account.service }}</span>
         <span class="card-title">{{ login }}</span>
         <span class="card-title">{{ password }}</span>
       </div>
-    </a>
+    <a href="/vault/{{account.id}}/delete">DELETE</a>
   </div>
 {% endblock %}
