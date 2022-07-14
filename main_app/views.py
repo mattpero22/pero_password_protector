@@ -6,6 +6,12 @@ from main_app.models import StoredAccount
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from main_app.forms import AccountForm
+from main_app.static.scripts import encryption
+
+import environ
+env = environ.Env()
+environ.Env.read_env()
+CIPHER = env('CIPHER')
 
 
 def home(request):
@@ -64,6 +70,8 @@ def add_account(request):
     # has the cat_id assigned
     new_account = form.save(commit=False)
     new_account.user = user
+    new_account.login = encryption.encrypt(new_account.login, CIPHER)
+    new_account.password = encryption.encrypt(new_account.password, CIPHER)
     new_account.save()
   return redirect('/vault/', user_id=user)
 

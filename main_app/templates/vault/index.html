@@ -4,6 +4,11 @@
 
 <h1>Vault</h1>
 
+<form action="{% url 'create' %}" method="post">
+  {% csrf_token %} {{ account_form.as_p }}
+  <input type="submit" value="Add Account" />
+</form>
+
 {% for account in accounts %}
 <div class="card">
   <a href="{% url 'detail' account.id %}">
@@ -14,9 +19,5 @@
 </div>
 {% endfor %}
 
-<form action="{% url 'create' %}" method="post">
-  {% csrf_token %} {{ account_form.as_p }}
-  <input type="submit" class="btn" value="Add Account" />
-</form>
 
 {% endblock %}
