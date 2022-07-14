@@ -42,14 +42,14 @@ def accounts_detail(request, storedaccount_id):
   password_raw = encryption.decrypt(account.password)
   return render(request, 'vault/detail.html', { 'account': account, 'service': account.service, 'login': login_raw, 'password': password_raw })
 
-class CreateAccount(LoginRequiredMixin, CreateView):
-    model = StoredAccount
-    fields = ['service', 'login', 'password']
-    success_url = '/vault/'
+# class CreateAccount(LoginRequiredMixin, CreateView):
+#     model = StoredAccount
+#     fields = ['service', 'login', 'password']
+#     success_url = '/vault/'
 
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+#     def form_valid(self, form):
+#         form.instance.user = self.request.user
+#         return super().form_valid(form)
 
 @login_required
 def add_account(request):
