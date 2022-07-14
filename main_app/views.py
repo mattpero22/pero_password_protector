@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from main_app.models import StoredAccount
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from main_app.forms import AccountForm
 from main_app.static.scripts import encryption
@@ -57,6 +57,11 @@ def add_account(request):
 
 class AccountDelete(LoginRequiredMixin, DeleteView):
   model = StoredAccount
+  success_url = '/vault/'
+
+class AccountUpdate(LoginRequiredMixin, UpdateView):
+  model = StoredAccount
+  fields = ['service', 'login', 'password']
   success_url = '/vault/'
 
 
