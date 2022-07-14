@@ -19,7 +19,7 @@ class StoredAccount(models.Model):
 class CreateAccount(LoginRequiredMixin, CreateView):
     model = StoredAccount
     fields = ['service', 'login', 'password']
-    success_url = '/'
+    success_url = '/vault/'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
