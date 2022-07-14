@@ -8,11 +8,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from main_app.forms import AccountForm
 from main_app.static.scripts import encryption
 
-import environ
-env = environ.Env()
-environ.Env.read_env()
-CIPHER = env('CIPHER')
-
 
 def home(request):
     return render(request, 'home.html')
@@ -43,7 +38,9 @@ def accounts_index(request):
 @login_required
 def accounts_detail(request, storedaccount_id):
   account = StoredAccount.objects.get(id=storedaccount_id)
-  return render(request, 'vault/detail.html', { 'account': account })
+  login_raw = encryption.decrypt(account.login)
+  password_raw = encryption.decrypt(account.password)
+  return render(request, 'vault/detail.html', { 'account': account, 'service': account.service, 'login': login_raw, 'password': password_raw })
 
 class CreateAccount(LoginRequiredMixin, CreateView):
     model = StoredAccount
@@ -54,24 +51,16 @@ class CreateAccount(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-    def clean(self):
-        cleaned_data = super().clean()
-        login = cleaned_data.get("login")
-        password = cleaned_data.get("password")
-
 @login_required
 def add_account(request):
   user = request.user
-  # create the ModelForm using the data in request.POST
   form = AccountForm(request.POST)
   # validate the form
   if form.is_valid():
-    # don't save the form to the db until it
-    # has the cat_id assigned
     new_account = form.save(commit=False)
     new_account.user = user
-    new_account.login = encryption.encrypt(new_account.login, CIPHER)
-    new_account.password = encryption.encrypt(new_account.password, CIPHER)
+    new_account.login = encryption.encrypt(new_account.login)
+    new_account.password = encryption.encrypt(new_account.password)
     new_account.save()
   return redirect('/vault/', user_id=user)
 
