@@ -68,7 +68,3 @@ class AccountUpdate(LoginRequiredMixin, UpdateView):
   model = StoredAccount
   fields = ['service', 'login', 'password']
   success_url = '/vault/'
-
-
-import django_heroku
-django_heroku.settings(locals())
