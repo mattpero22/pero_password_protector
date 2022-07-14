@@ -1,6 +1,6 @@
 # Pero Password Protector
 Password management web app to securely keep track of your accounts and passwords to various places on the web! No need for post its and lots of memorization, just use your personal token to unlock your password vault!
-[Imgur](https://i.imgur.com/pLnrklh.png)
+![titleScreen]https://i.imgur.com/pLnrklh.png)
 
 ## Deployed here
 - https://p3protector.herokuapp.com/
